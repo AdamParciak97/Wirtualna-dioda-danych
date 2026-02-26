@@ -53,43 +53,44 @@ Oracle Linux 8 nie ma dostępu do internetu – pakiety muszą zostać
 pobrane na maszynie z internetem.
 
 Polecenia:
-
+```bash
 sudo dnf install epel-release -y
 
 mkdir ~/pakiety-dioda
 
 cd ~/pakiety-dioda
+```
 
 Pobieranie pakietów:
-
+```bash
 sudo dnf download --resolve --destdir ~/pakiety-dioda inotify-tools
 clamav clamav-update clamav-lib iptables-services
 
-Pobieranie bazy ClamAV:
+# Pobieranie bazy ClamAV:
 
 wget https://database.clamav.net/main.cvd
 
 wget https://database.clamav.net/daily.cvd
 
 wget https://database.clamav.net/bytecode.cvd
-
+```
 ## 4. KONFIGURACJA ORACLE LINUX 8
 
-Włączenie SELinux:
-
+# Włączenie SELinux:
+```bash
 sudo nano /etc/selinux/config
 
 SELINUX=enforcing
 
 sudo reboot
-
+```
 Konfiguracja adresów sieciowych:
-
+```bash
 eth0 – 192.168.10.254/24
 
 eth1 – 192.168.20.254/24
 
-Wyłączenie firewalld, włączenie iptables:
+# Wyłączenie firewalld, włączenie iptables:
 
 sudo systemctl stop firewalld
 
@@ -99,7 +100,7 @@ sudo systemctl enable iptables
 
 sudo systemctl start iptables
 
-Wyłączenie routingu w kernel:
+# Wyłączenie routingu w kernel:
 
 sudo nano /etc/sysctl.conf
 
@@ -109,13 +110,13 @@ net.ipv4.conf.all.forwarding = 0
 
 sysctl –p
 
-Utworzenie użytkownika diode:
+# Utworzenie użytkownika diode:
 
 useradd -r -s /sbin/nologin -d /opt/dioda dioda
 
 chown -R dioda:dioda /opt/diode
 
-Zablokowanie dostępu root:
+# Zablokowanie dostępu root:
 
 nano /etc/ssh/sshd_config
 
@@ -125,7 +126,7 @@ PasswordAuthentication no
 
 systemctl restart sshd
 
-Ustawienie sudo na jednego admina:
+# Ustawienie sudo na jednego admina:
 
 useradd admin_dioda
 
@@ -133,14 +134,14 @@ passwd admin_dioda
 
 usermod -aG wheel admin_dioda
 
-Ustawienie immutable na pliki konfiguracyjne:
+# Ustawienie immutable na pliki konfiguracyjne:
 
 chattr +i /opt/dioda/bin/dioda.sh
 
 chattr +i /etc/systemd/system/dioda.service
 
 chattr +i /etc/sysconfig/iptables
-
+```
 ## 5. SKRYPT DIODY Z KOLEJKOWANIEM
 
 Skrypt zapewnia:
@@ -156,19 +157,19 @@ Skrypt zapewnia:
 • Transfer jednostronny
 
 Utworzenie skryptu:
-
+```bash
 sudo nano /usr/local/bin/dioda.sh
-
-(wklej zawartość pliku diode.sh)
+```
+(wklej zawartość pliku dioda.sh)
 
 Rejestracja jako usługa:
-
+```bash
 sudo nano /etc/systemd/system/dioda.service
 
 sudo systemctl enable dioda
 
 sudo systemctl start dioda
-
+```
 ## 6. KONFIGURACJA WINDOWS
 
 Konfiguracja IP:
@@ -234,31 +235,8 @@ dioda.sh → /usr/local/bin/
 
 dioda.service → /etc/systemd/system/
 
-## 9. ROZWIĄZYWANIE PROBLEMÓW
 
-Najczęstsze problemy:
-
-BRAK POŁĄCZENIA:
-
-ping 192.168.10.254
-
-PLIK NIE DOCIERA:
-
-sprawdź iptables
-
-BŁĄD SHA256:
-
-plik uszkodzony
-
-CLAMAV BLOKUJE:
-
-plik wykryty jako zagrożenie
-
-BUF0R PEŁNY:
-
-zwiększ dysk VM albo zmniejsz limit
-
-## 10. LIMITY I PARAMETRY SYSTEMU
+## 9. LIMITY I PARAMETRY SYSTEMU
 
 MAX_ROZMIAR_MB – 1024 MB
 
@@ -279,3 +257,4 @@ Przykładowe czasy transferu:
 1 GB – 3 min
 
 10 GB – 30 min
+
