@@ -10,7 +10,7 @@ Wirtualna Dioda Danych
 | Klasyfikacja         | Wewnętrzna                        |
 | Platforma            | VirtualBox / Oracle Linux 8       |
 | Protokół transferu   | UFTP (UDP File Transfer Protocol) |
-| Data opracowania     | 2025                              |
+| Data opracowania     | 2026                              |
 
 
 
