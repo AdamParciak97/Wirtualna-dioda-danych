@@ -469,12 +469,12 @@ weryfikacji.</td>
 
 |  |  |  |  |  |
 |----|----|----|----|----|
-| **Nr** | **Nazwa testu** | **Wynik** | **Data** | **Tester** |
-| T-01 | Podstawowy transfer pliku A → B | POZYTYWNY | 25.02.2026 | por. Adam PARCIAK |
-| T-02 | Blokada kierunku odwrotnego B → A | POZYTYWNY | 25.02.2026 | por. Adam PARCIAK |
-| T-03 | Weryfikacja szyfrowania i UDP | POZYTYWNY | 25.02.2026 | por. Adam PARCIAK |
-| T-04 | Integralność SHA-256 | POZYTYWNY | 25.02.2026 | por. Adam PARCIAK |
-| T-05 | Logowanie i audyt | POZYTYWNY | 25.02.2026 | por. Adam PARCIAK |
+| **Nr** | **Nazwa testu** | **Wynik** | **Data** | 
+| T-01 | Podstawowy transfer pliku A → B | POZYTYWNY | 25.02.2026 |
+| T-02 | Blokada kierunku odwrotnego B → A | POZYTYWNY | 25.02.2026 | 
+| T-03 | Weryfikacja szyfrowania i UDP | POZYTYWNY | 25.02.2026 |
+| T-04 | Integralność SHA-256 | POZYTYWNY | 25.02.2026 |
+| T-05 | Logowanie i audyt | POZYTYWNY | 25.02.2026 | 
 
 #  6. Podsumowanie
 
